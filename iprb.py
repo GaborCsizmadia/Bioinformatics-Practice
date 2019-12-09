@@ -1,7 +1,10 @@
 
-k = 23
-m = 23
-n = 23
+k = 2
+m = 2
+n = 2
+
+f = open("rosalind_iprb.txt","r")
+k,m,n = map(int,f.readline().split())
 
 pop = k + m + n
 pairs = pop * (pop - 1) / 2

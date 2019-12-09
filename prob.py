@@ -2,8 +2,9 @@
 
 import math
 
-s = "ACGATACAA"
-A = [0.129 , 0.287 , 0.423 , 0.476 , 0.641 , 0.742 , 0.783]
+f = open("rosalind_prob.txt","r")
+s = f.readline().replace("\n","").replace("\r","")
+A = list(map(float,f.readline().replace("\n","").replace("\r","").split()))
 
 
 def gc(str):
@@ -22,8 +23,5 @@ def matchprob(str,gcprob):
 def matchlog(str,gcprob):
     return math.log(matchprob(str,gcprob),10)
 
-print len(s)
-print gc(s)
-
 for i in range(len(A)):
-    print math.log(matchprob(s,A[i]),10)
+    print math.log(matchprob(s,A[i]),10),

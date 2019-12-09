@@ -2,7 +2,7 @@
 
 import sys
 
-f = open('rosalind_subs.txt,'r')
+f = open('rosalind_subs.txt','r')
 index = 0
 inputstr = ""
 inputsubstr = ""

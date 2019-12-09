@@ -1,7 +1,7 @@
 
 import sys
 
-f = open(sys.argv[1],'r')
+f = open("rosalind_hamm.txt","r")
 input1 = ""
 input2 = ""
 

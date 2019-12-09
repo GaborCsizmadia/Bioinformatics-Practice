@@ -1,7 +1,7 @@
 
 
-
-numberofpermutations = 6
+f = open("rosalind_perm.txt","r")
+numberofpermutations = int(f.readline())
 
 def factorial(n):
 	if n == 0:

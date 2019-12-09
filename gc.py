@@ -1,5 +1,5 @@
 
-import sys
+
 
 def gccontent(dna):
 	count = 0
@@ -8,7 +8,7 @@ def gccontent(dna):
 			count+=1
 	return 100.0 * count / len(dna)
 
-f = open(sys.argv[1],'r')
+f = open("rosalind_gc.txt",'r')
 inputstring = ""
 idList = []
 
