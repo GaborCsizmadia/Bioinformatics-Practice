@@ -1,6 +1,6 @@
 
 
-f = open("input.txt",'r')
+f = open("rosalind_prot.txt",'r')
 str = f.readline()
 output = ""
 
@@ -21,7 +21,7 @@ map = {"UUU":"F", "UUC":"F", "UUA":"L", "UUG":"L",
     "GAU":"D", "GAC":"D", "GAA":"E", "GAG":"E",
     "GGU":"G", "GGC":"G", "GGA":"G", "GGG":"G"}
 
-for i in range(0,len(str),3):
+for i in range(0,len(str)-2,3):
 
     output += map[str[i:(i+3)]] if map[str[i:(i+3)]] != "STOP" else ""
 
