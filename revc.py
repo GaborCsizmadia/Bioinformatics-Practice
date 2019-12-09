@@ -5,16 +5,12 @@ output = ""
 
 for ch in range(len(dataset)-1,-1,-1):
 	if dataset[ch] == "T":
-		print "T"
 		output = output + "A"
 	if dataset[ch] == "A":
-		print "A"
 		output = output + "T"
 	if dataset[ch] == "G":
-		print "G"
 		output = output + "C"
 	if dataset[ch] == "C":
-		print "C"
 		output = output + "G"
 
 print output
