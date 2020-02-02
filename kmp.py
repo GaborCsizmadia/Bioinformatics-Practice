@@ -2,17 +2,33 @@
 
 import numpy as np
 
-"""f = open("rosalind_kmp.txt","r")
-input = ""
+f = open("rosalind_kmp.txt","r")
+inp = ""
 for line in f:
     if line[0] == ">":
         continue
     else:
-        input += line.strip()"""
+        inp += line.strip()
 
-input = "CAGCATGGTATCACAGCAGAG"
+# inp = "CAGCATGGTATCACAGCAGAG"
+l = len(inp)
 
-failure_array = [0]
+i=0
+j=-1
+b = np.arange(l+1)
+b[i]=j
+while i < l:
+    while j >= 0 and inp[i]!=inp[j]:
+        j = b[j]
+    i += 1
+    j += 1
+    b[i] = j
+
+for i in range(1,l+1):
+    print b[i],
+
+
+"""failure_array = [0]
 comp1 = input[1:2]
 comp2 = input[0:1]
 
@@ -54,3 +70,4 @@ for farr in failure_array:
 
 print
 print eqarr
+"""
