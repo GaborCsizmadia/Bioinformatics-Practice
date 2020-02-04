@@ -7,10 +7,7 @@ import numpy as np
 import sys
 sys.setrecursionlimit(10000)
 
-string1 = "PLEASANTLY"
-string2 = "MEANLY"
-
-f = open("rosalind_edit.txt","r")
+f = open("rosalind_edta.txt","r")
 i = 0
 string1 = ""
 string2 = ""
@@ -25,53 +22,77 @@ for line in f:
     if i == 4:
         string2 += line.strip()
 
-string1 = "PLEASANTLY"
-string2 = "MEANLY"
+string1 = "PRETTY"
+string2 = "PRTTEIN"
 
 """PLEASANTLY
-M-EA--N-LY"""
+   M-EA--N-LY"""
 
 l1 = len(string1)
 l2 = len(string2)
 
-print l1, l2
+print l1, string1
+print l2, string2
 
 arr = np.arange((l1+1)*(l2+1))
-arr = arr.reshape((l1+1, l2+1))
-arr.fill(-1)
+arr = arr.reshape((l1+1,l2+1))
 
-insert_a = []
-insert_b = []
+arrows = np.arange((l1+1)*(l2+1))
+arrows = arrows.reshape((l1+1,l2+1))
 
-def distance(a,b,i,j):
-    if min(i,j) == 0:
-        arr[i][j] = max(i,j)
-        return max(i,j)
-    f1 = False
-    f2 = False
-    if arr[i-1][j] == -1:
-        arr[i-1][j] = distance(a,b,i-1,j)
-        f1 = True
-    d1 = arr[i-1][j] + 1
-    if arr[i][j-1] == -1:
-        arr[i][j-1] = distance(a,b,i,j-1)
-        f2 = True
-    d2 = arr[i][j-1] + 1
-    if arr[i-1][j-1] == -1:
-        arr[i-1][j-1] = distance(a,b,i-1,j-1)
-    d3 = arr[i-1][j-1]
-    corr = 1 if (a[i-1] != b[j-1]) else 0
-    d3 += corr
-    arr[i][j] = min(d1,d2,d3)
-    if arr[i][j] == d1 and f1 == True:
-        insert_b.append(j)
-    elif arr[i][j] == d2 and f2 == True:
-        insert_a.append(i)
-    return arr[i][j]
+# arr = np.empty([l1+1,l2+1])
+# arrows = np.empty([l1+1,l2+1])
 
-print distance(string1,string2,l1,l2)
+for i in range(l1+1):
+    arr[i][0] = (-1)*i
+
+for i in range(l2+1):
+    arr[0][i] = (-1)*i
+
+for i in range(1,l1+1):
+    for j in range(1,l2+1):
+        score1 = arr[i-1][j-1] + (0 if string1[i-1] == string2[j-1] else -1)
+        score2 = arr[i-1][j] - 1
+        score3 = arr[i][j-1] - 1
+        maxsc = max(score1,score2,score3)
+        arr[i][j] = maxsc
+        arrows[i][j] = +1 if maxsc == score2 else (-1 if maxsc == score3 else 0)
+
 print arr
-print insert_a
-print insert_b
+print arrows
 
+newstr1 = ""
+newstr2 = ""
+i = l1
+j = l2
+while not (i == 0 and j == 0):
+    if arrows[i][j] == 0:
+        newstr1 += string1[i-1]
+        newstr2 += string2[j-1]
+        i -= 1
+        j -= 1
+    if arrows[i][j] == -1:
+        newstr1 += "-"
+        newstr2 += string2[j-1]
+        j -= 1
+    if arrows[i][j] == 1:
+        newstr1 += string1[i-1]
+        newstr2 += "-"
+        i -= 1
 
+newstr1 = newstr1[::-1]
+newstr2 = newstr2[::-1]
+
+def hamming(str1,str2):
+    result = 0
+    for i in range(len(str1)):
+        if str1[i] != str2[i]:
+            result += 1
+    return result
+
+print hamming(newstr1,newstr2)
+print newstr1
+print newstr2
+
+"""844 836
+339"""

@@ -8,7 +8,7 @@ sys.setrecursionlimit(10000)
 string1 = "PLEASANTLY"
 string2 = "MEANLY"
 
-f = open("rosalind_edit.txt","r")
+f = open("rosalind_edta.txt","r")
 i = 0
 string1 = ""
 string2 = ""
